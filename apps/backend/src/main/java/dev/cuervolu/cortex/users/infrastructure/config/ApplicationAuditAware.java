@@ -1,5 +1,6 @@
 package dev.cuervolu.cortex.users.infrastructure.config;
 
+import dev.cuervolu.cortex.users.domain.User;
 import java.util.Optional;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.lang.NonNull;
@@ -21,9 +22,11 @@ public class ApplicationAuditAware implements AuditorAware<String> {
   @Override
   @NonNull
   public Optional<String> getCurrentAuditor() {
-    return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
-        .filter(Authentication::isAuthenticated)
-        .map(Authentication::getPrincipal)
-        .map(Object::toString);
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal() instanceof String) {
+      return Optional.empty();
+    }
+    User userPrincipal = (User) authentication.getPrincipal();
+    return Optional.of(userPrincipal.getId().toString());
   }
 }
