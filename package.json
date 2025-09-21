@@ -1,0 +1,23 @@
+{
+  "name": "@cortex/core",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "cd apps/frontend && bun dev",
+    "build:frontend": "cd apps/frontend && bun build",
+    "preview:frontend": "cd apps/frontend && bun preview",
+    "postinstall:frontend": "cd apps/frontend && bun install",
+    "generate:frontend": "cd apps/frontend && bun generate",
+    "clean:frontend": "cd apps/frontend && bun clean",
+    "shadcn": "cd apps/frontend && bunx --bun shadcn-vue@latest"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "peerDependencies": {
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.4"
+  }
+}
