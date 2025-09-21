@@ -2,13 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  content: {
-    experimental: { sqliteConnector: 'native' },
-  },
   modules: [
     '@nuxt/fonts',
     '@nuxt/test-utils',
-    '@nuxt/content',
     '@nuxtjs/seo',
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
